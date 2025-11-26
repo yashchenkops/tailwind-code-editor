@@ -3,10 +3,39 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <script src="https://cdn.tailwindcss.com/"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          container: {
+            center: true,
+            padding: '2rem',
+          },
+        },
+      };
+    </script>
+    <style type="text/tailwindcss">
+      @layer components {
+        .hero-image {
+          @apply rounded-2xl shadow-2xl;
+          transform: rotateX(5deg) rotateY(-10deg) rotateZ(2deg);
+        }
+
+        .hero-reflection {
+          @apply absolute inset-0 left-20 top-20 rounded-2xl bg-gradient-to-bl from-indigo-200 to-pink-200;
+          transform: scale(1.1) rotateX(5deg) rotateY(-10deg) rotateZ(2deg);
+        }
+      }
+
+      @layer utilities {
+        .perspective-1000 {
+          perspective: 1000px;
+        }
+      }
+    </style>
   </head>
   <header class="py-4">
-    <div class="container mx-auto flex items-center gap-10">
+    <div class="container flex items-center gap-10">
       <a href="#" class="flex items-center gap-x-2">
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -40,4 +69,39 @@
       </nav>
     </div>
   </header>
+  <main>
+    <section class="pt-28 pb-48">
+      <div class="container flex gap-x-8">
+        <div class="flex flex-col justify-center">
+          <h1 class="text-5xl font-black tracking-light">
+            Your
+            <span
+              class="bg-gradient-to-r from-purple-600 to-indigo-600 bg-clip-text text-transparent"
+              >VS Code</span
+            >
+            Boost
+          </h1>
+          <p class="mt-4 text-lg text-gray-600">
+            Unlock your coding potential with tailored settings, shortcuts, and expert tutorials
+          </p>
+          <div class="mt-8 flex gap-x-2">
+            <a
+              href="#"
+              class="px-8 py-3 text-lg font-semibold rounded-lg bg-indigo-600 text-indigo-50 hover:bg-indigo-700"
+              >Explore</a
+            >
+            <a
+              href="#features"
+              class="px-8 py-3 text-lg font-semibold rounded-lg bg-gray-100 text-gray-900 hover:bg-gray-200"
+              >Learn More</a
+            >
+          </div>
+        </div>
+        <div class="relative w-2/3 scale-110 perspective-1000">
+          <div class="hero-reflection"></div>
+          <img src="/editor.webp" alt="Editor UI" class="hero-image" />
+        </div>
+      </div>
+    </section>
+  </main>
 </html>
